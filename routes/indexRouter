@@ -23,14 +23,6 @@ const messages = [
     }
 ];
 
-function getMessageById(id) {
-    messages.forEach((message) => {
-        if (Number(message.id) == Number(id)) {
-            return message;
-        }
-    });
-};
-
 indexRouter.get("/", (req, res) => {
     res.render("index", { title: "Mini Msgboard", messages: messages});
 });
@@ -42,12 +34,13 @@ indexRouter.get("/new", (req, res) => {
 
 indexRouter.post("/new", (req, res) => {
     msgCount++;
-    messages.push({ text: req.body.message, user: req.body.name, added: new Date(), msgId: msgCount });
+    messages.push({ text: req.body.message, user: req.body.name, added: new Date(), id: msgCount });
     res.redirect("/");
 });
 
 indexRouter.get("/message/:id", (req, res) => {
-    let currentMessage = getMessageById(Number(req.params['id']));
+    let curId = Number(req.params['id']);
+    let currentMessage = messages[curId-1];
     res.render("message", { user: currentMessage.user, text: currentMessage.text, date: currentMessage.added });
 });
 
