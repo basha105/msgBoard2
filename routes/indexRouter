@@ -1,25 +1,53 @@
 const Router = require('express');
 const indexRouter = Router();
+let msgCount = 3;
+let msgId;
 
 const messages = [
     {
         text: "HI!",
         user: "Omar",
-        added: new Date()
+        added: new Date(),
+        msgId: 1
     },
     {
         text: "HELLO!",
         user: "Brent",
-        added: new Date()
+        added: new Date(),
+        msgId: 2
     },
     {
         text: "SIUUU",
         user: "Cristiano",
-        added: new Date()
+        added: new Date(),
+        msgId: 3
     }
 ];
+
+function getMessageById(id) {
+    messages.forEach((message) => {
+        if (message.msgId == id) {
+            return message;
+        }
+    });
+};
 
 indexRouter.get("/", (req, res) => {
     res.render("index", { title: "Mini Msgboard", messages: messages});
 });
+
+indexRouter.get("/new", (req, res) => {
+    res.render("form");
+});
+
+indexRouter.post("/new", (req, res) => {
+    msgCount++;
+    messages.push({ text: req.body.message, user: req.body.name, added: new Date(), msgId: msgCount });
+    res.redirect("/");
+});
+
+indexRouter.get("/message", (req, res) => {
+    res.render("message");
+});
+
 module.exports = indexRouter;
