@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <% messages.forEach((message) => { %>
+            <%- include('user', {user: message.user, text: message.text, date: message.added}); %>
+        <% }); %>
+    </body>
+</html>
