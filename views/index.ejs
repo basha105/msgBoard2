@@ -6,7 +6,7 @@
         <a href="/new">New user</a>
 
         <% messages.forEach((message) => { %>
-            <%- include('user', {user: message.user, id: message.msgId }); %>
+            <%- include('user', {user: message.user, id: message.id }); %>
         <% }); %>
     </body>
 </html>

@@ -32,6 +32,7 @@ indexRouter.get("/", (req, res) => {
 });
 
 indexRouter.get("/new", (req, res) => {
+    console.log("hello");
     res.render("form");
 });
 
@@ -41,9 +42,8 @@ indexRouter.post("/new", (req, res) => {
     res.redirect("/");
 });
 
-indexRouter.get("/message/:id", (req, res) => {
-    let currentMessage = getMessageById(req.params['id']);
-    res.send(currentMessage.text);
+indexRouter.get("/message", (req, res) => {
+    res.render("message");
 });
 
 module.exports = indexRouter;
