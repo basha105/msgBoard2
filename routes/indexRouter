@@ -1,6 +1,24 @@
 const Router = require('express');
 const indexRouter = Router();
 
+const messages = [
+    {
+        text: "HI!",
+        user: "Omar",
+        added: new Date()
+    },
+    {
+        text: "HELLO!",
+        user: "Brent",
+        added: new Date()
+    },
+    {
+        text: "SIUUU",
+        user: "Cristiano",
+        added: new Date()
+    }
+];
+
 indexRouter.get("/", (req, res) => res.send("Index"));
 
 module.exports = indexRouter;
