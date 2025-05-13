@@ -42,7 +42,7 @@ indexRouter.post("/new", (req, res) => {
     res.redirect("/");
 });
 
-indexRouter.get("/message", (req, res) => {
+indexRouter.get("/message/:id", (req, res) => {
     res.render("message");
 });
 
