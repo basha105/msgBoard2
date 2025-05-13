@@ -23,8 +23,12 @@ const messages = [
     }
 ];
 
-async function getMessageById(messageId) {
-    return messages.find(message => message.id == messageId);
+function getMessageById(id) {
+    messages.forEach((message) => {
+        if (Number(message.id) == Number(id)) {
+            return message;
+        }
+    });
 };
 
 indexRouter.get("/", (req, res) => {
