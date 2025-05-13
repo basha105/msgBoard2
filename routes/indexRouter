@@ -1,7 +1,6 @@
 const Router = require('express');
 const indexRouter = Router();
 let msgCount = 3;
-let msgId;
 
 const messages = [
     {
@@ -46,8 +45,9 @@ indexRouter.post("/new", (req, res) => {
     res.redirect("/");
 });
 
-indexRouter.get("/message", (req, res) => {
-    res.render("message");
+indexRouter.get("/message/:id", (req, res) => {
+    let currentMessage = getMessageById(req.params['id']);
+    res.send(currentMessage.text);
 });
 
 module.exports = indexRouter;
