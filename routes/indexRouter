@@ -24,7 +24,7 @@ const messages = [
 ];
 
 async function getMessageById(messageId) {
-    return messages.find(message => message.id === messageId);
+    return messages.find(message => message.id == messageId);
 };
 
 indexRouter.get("/", (req, res) => {
