@@ -1,34 +1,12 @@
 const Router = require('express');
 const indexRouter = Router();
-let msgCount = 3;
-
-const messages = [
-    {
-        text: "HI!",
-        user: "Omar",
-        added: new Date(),
-        id: 1
-    },
-    {
-        text: "HELLO!",
-        user: "Brent",
-        added: new Date(),
-        id: 2
-    },
-    {
-        text: "SIUUU",
-        user: "Cristiano",
-        added: new Date(),
-        id: 3
-    }
-];
+const db = require("../db/queries");
 
 indexRouter.get("/", (req, res) => {
     res.render("index", { title: "Mini Msgboard", messages: messages});
 });
 
 indexRouter.get("/new", (req, res) => {
-    console.log("hello");
     res.render("form");
 });
 
