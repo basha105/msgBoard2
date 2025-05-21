@@ -1,24 +1,10 @@
 const Router = require('express');
 const indexRouter = Router();
-const db = require("../db/queries");
+const indexController = require('../controllers/indexController');
 
-indexRouter.get("/", (req, res) => {
-    res.render("index", { title: "Mini Msgboard", messages: messages});
-});
-
-indexRouter.get("/new", (req, res) => {
-    res.render("form");
-});
-
-indexRouter.post("/new", (req, res) => {
-    db.createMessage(req.body.user, req.body.message);
-    res.redirect("/");
-});
-
-indexRouter.get("/message/:id", (req, res) => {
-    let curId = Number(req.params['id']);
-    let currentMessage = messages[curId-1];
-    res.render("message", { user: currentMessage.user, text: currentMessage.text, date: currentMessage.added });
-});
+indexRouter.get("/", (req, res) => indexController.displayMessages);
+indexRouter.get("/new", (req, res) => res.render("form"));
+indexRouter.post("/new", (req, res) => indexController.addMessage);
+indexRouter.get("/message/:id", (req, res) => indexController.displayMessageContent);
 
 module.exports = indexRouter;
