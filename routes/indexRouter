@@ -11,8 +11,7 @@ indexRouter.get("/new", (req, res) => {
 });
 
 indexRouter.post("/new", (req, res) => {
-    msgCount++;
-    messages.push({ text: req.body.message, user: req.body.name, added: new Date(), id: msgCount });
+    db.createMessage(req.body.user, req.body.message);
     res.redirect("/");
 });
 
