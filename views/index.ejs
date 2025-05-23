@@ -1,12 +1,15 @@
 <html>
     <head>
-        <title><%= title %></title>
+        <title>Message board</title>
     </head>
     <body>
-        <a href="/new">New user</a>
-
-        <% messages.forEach((message) => { %>
-            <%- include('user', {user: message.user, id: message.id }); %>
-        <% }); %>
+        <a href="/new">New message</a>
+        <ul>
+            <% messages.forEach((message) => { %>
+                <li><%= message.username %> sent a message.</li>
+                <a href="/message">View</a>
+            <% }); %>
+        </ul>
+        
     </body>
 </html>

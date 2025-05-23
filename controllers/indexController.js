@@ -1,23 +1,19 @@
-const db = require('../db/queries');
+const db = require("../db/queries");
 
 async function displayMessages(req, res) {
-    const messages = await db.getMessages();
-    res.render("index", { messages: messages });
+    const { rows } = await db.getMessages();
+    console.log("messages:", rows);
+    res.render("index", { messages: rows });
 }
 
-async function addMessage(req, res) {
-    await db.createMessage(req.body.user, req.body.message);
+async function postMessage(req, res) {
+    const username = req.body.username;
+    const message = req.body.message;
+    await db.postMessage(username, message);
     res.redirect("/");
-}
-
-async function displayMessageContent(req, res) {
-    const id = Number(req.params['id']);
-    const message = await db.getMessageById(id);
-    res.render("message", { user: message.user, message: message.message });
 }
 
 module.exports = {
     displayMessages,
-    addMessage,
-    displayMessageContent
+    postMessage
 }

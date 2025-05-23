@@ -2,9 +2,9 @@ const Router = require('express');
 const indexRouter = Router();
 const indexController = require('../controllers/indexController');
 
-indexRouter.get("/", (req, res) => indexController.displayMessages);
+indexRouter.get("/", indexController.displayMessages);
 indexRouter.get("/new", (req, res) => res.render("form"));
-indexRouter.post("/new", (req, res) => indexController.addMessage);
-indexRouter.get("/message/:id", (req, res) => indexController.displayMessageContent);
+indexRouter.post("/new", indexController.postMessage);
+indexRouter.get("/message", indexController.displayMessageContent);
 
 module.exports = indexRouter;
