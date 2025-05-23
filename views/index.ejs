@@ -6,8 +6,10 @@
         <a href="/new">New message</a>
         <ul>
             <% messages.forEach((message) => { %>
-                <li><%= message.username %> sent a message.</li>
-                <a href="/message">View</a>
+                <li><%= message.username %> sent a message.
+                     <a href="/message/<%= message.id %>">View</a>
+                     <a href="/message/<%= message.id %>/delete">Delete</a>
+                </li> 
             <% }); %>
         </ul>
         

@@ -14,8 +14,14 @@ async function getMessageById(id) {
     return message;
 }
 
+async function deleteMessageById(id) {
+    await pool.query(`DELETE FROM messages WHERE id=${id}`);
+}
+
 module.exports = {
     getMessages,
-    postMessage
+    postMessage,
+    getMessageById,
+    deleteMessageById
 }
 

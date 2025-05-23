@@ -13,7 +13,22 @@ async function postMessage(req, res) {
     res.redirect("/");
 }
 
+async function displayMessageContent(req, res) {
+    const id = req.params['id'];
+    const { rows } = await db.getMessageById(id);
+    console.log(rows);
+    res.render("message", { username: rows[0].username, text: rows[0].message });
+}
+
+async function deleteMessage(req, res) {
+    const id = req.params['id'];
+    await db.deleteMessageById(id);
+    res.redirect("/");
+}
+
 module.exports = {
     displayMessages,
-    postMessage
+    postMessage,
+    displayMessageContent,
+    deleteMessage
 }
